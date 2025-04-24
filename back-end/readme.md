@@ -85,4 +85,4 @@ npm start
 
 ---
 
-> ✅ Application should now be running with both front-end and back-end servers.
+> ✅ Application updated should now be running with both front-end and back-end servers.
