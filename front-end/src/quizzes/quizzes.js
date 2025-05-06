@@ -1,15 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import "./quizzes.css";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 
 const QuizzesPage = () => {
-  const [click, isClick] = useState(false);
   const navigate = useNavigate();
 
-  const handleNavigate = (path) => {
-    isClick(true);
-    navigate(path);
+  const levels = [
+    {
+      level: "Beginner",
+      title: "Beginner",
+      topic: "Python Basics",
+      description: "Learn variables, data types, and simple syntax.",
+      emoji: "🐍",
+    },
+    {
+      level: "Medium",
+      title: "Medium",
+      topic: "Functions & Loops",
+      description: "Practice with loops, conditionals, and function logic.",
+      emoji: "🐍",
+    },
+    {
+      level: "Hard",
+      title: "Hard",
+      topic: "OOP & Recursion",
+      description:
+        "Challenge your skills with classes, recursion, and advanced logic.",
+      emoji: "🐍",
+    },
+  ];
+
+  const handleNavigate = (path, level) => {
+    navigate(path, { state: { level } });
   };
 
   return (
@@ -23,43 +46,42 @@ const QuizzesPage = () => {
         </nav>
       </header>
 
-      <div className="main-content">
-        {/* Left Column */}
-        <div
-          className="left-panel"
-          onClick={() => handleNavigate("/python-quizzes")}
-        >
-          <section className="section-card enhanced-card" id="lessons">
-            <h3>🐍 Python Quiz</h3>
-            <p>
-              <strong>Topic:</strong> Python Basics
-            </p>
-            <p>
-              <strong>Level:</strong> Beginner
-            </p>
-            <p>
-              <strong>Questions:</strong> 10
-            </p>
-            <p>
-              <em>
-                Learn the core concepts of Python including variables, data
-                types, and simple logic.
-              </em>
-            </p>
-            <button onClick={() => handleNavigate("/python-quizzes")}>
-              Start Quiz
-            </button>
-          </section>
-          {/* {click ? "Hello World, Button is clicked!!!" : ""} */}
+      <div className="main-content quiz-grid">
+        {/* Python Levels (loop) */}
+        <div className="left-panel">
+          {levels.map((item) => (
+            <section
+              key={item.level}
+              className="section-card enhanced-card"
+              onClick={() => handleNavigate("/python-quizzes", item.level)}
+            >
+              <h3>
+                {item.emoji} Python Quiz ({item.title})
+              </h3>
+              <p>
+                <strong>Topic:</strong> {item.topic}
+              </p>
+              <p>
+                <strong>Level:</strong> {item.title}
+              </p>
+              <p>
+                <strong>Questions:</strong> 10
+              </p>
+              <p>
+                <em>{item.description}</em>
+              </p>
+              <button>Start Quiz</button>
+            </section>
+          ))}
         </div>
 
-        {/* Right Column */}
-        <div
-          className="right-panel"
-          onClick={() => handleNavigate("/javascript-quizzes")}
-        >
-          <section className="section-card enhanced-card" id="quizzes">
-            <h3>📜 JavaScript Quiz</h3>
+        {/* JavaScript Beginner */}
+        <div className="right-panel">
+          <section
+            className="section-card enhanced-card"
+            onClick={() => handleNavigate("/javascript-quizzes", "beginner")}
+          >
+            <h3>📜 JavaScript Quiz (Beginner)</h3>
             <p>
               <strong>Topic:</strong> Functions & Events
             </p>
@@ -70,14 +92,9 @@ const QuizzesPage = () => {
               <strong>Questions:</strong> 10
             </p>
             <p>
-              <em>
-                Test your JS basics with questions on functions, variables, and
-                event handling.
-              </em>
+              <em>Test your basics with variables, functions, and events.</em>
             </p>
-            <button onClick={() => navigate("/javascript-quizzes")}>
-              Start Quiz
-            </button>
+            <button>Start Quiz</button>
           </section>
         </div>
       </div>

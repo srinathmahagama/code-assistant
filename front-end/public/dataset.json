@@ -1,902 +1,197 @@
 [
   {
-    "instruction": "Write a function `creat_odd_list` that returns even numbers from 3 to n.",
-    "input": "",
-    "output": "def create_odd_list(n):\n    return list(range(3, n+1, 3))"
-  },
-  {
-    "instruction": "Explain this javascript code: `'JavaScript'.includes('Script')`",
-    "input": "",
-    "output": "It checks if the string contains 'Script', and returns true."
-  },
-  {
-    "instruction": "Explain this javascript code: `'JavaScript'.includes('Script')`",
-    "input": "",
-    "output": "It checks if the string contains 'Script', and returns true."
-  },
-  {
-    "instruction": "Explain this code: `max([5, 2, 8])`",
-    "input": "",
-    "output": "It returns the largest number in the list, which is 8."
-  },
-  {
-    "instruction": "Write a javascript function to calculate the factorial of a number.",
-    "input": "",
-    "output": "function factorial(n) {\n  if (n === 0) return 1;\n  return n * factorial(n - 1);\n}"
-  },
-  {
-    "instruction": "Write a Python function to calculate the factorial of a number.",
-    "input": "",
-    "output": "def factorial(n):\n    return 1 if n == 0 else n * factorial(n-1)"
-  },
-  {
-    "instruction": "Explain this python code: `[x**2 for x in range(5)]`",
-    "input": "",
-    "output": "It returns a list of squares from 0 to 4: [0, 1, 4, 9, 16]."
-  },
-  {
-    "instruction": "Write a JavaScript function to sum all numbers in an array.",
-    "input": "",
-    "output": "function sumArray(arr) {\n  return arr.reduce((sum, num) => sum + num, 0);\n}"
-  },
-  {
-    "instruction": "Write a javascript program that logs numbers from 1 to 5 using a loop.",
-    "input": "",
-    "output": "for (let i = 1; i <= 5; i++) {\n  console.log(i);\n}"
-  },
-  {
-    "instruction": "Explain what this javascript code does: `[1, 2, 3].map(x => x * 2)`",
-    "input": "",
-    "output": "It creates a new array by doubling each element: [2, 4, 6]."
-  },
-  {
-    "instruction": "Write a JavaScript function to check if a number is even.",
-    "input": "",
-    "output": "function isEven(n) {\n  return n % 2 === 0;\n}"
-  },
-  {
-    "instruction": "Write a JavaScript function that returns the sum of two numbers.",
-    "input": "",
-    "output": "function sum(a, b) {\n  return a + b;\n}"
-  },
-  {
-    "instruction": "Explain this javascript code: `typeof 42`",
-    "input": "",
-    "output": "It returns the type of the value 42, which is 'number'."
-  },
-  {
-    "instruction": "Write a javascript function to remove duplicates from an array.",
-    "input": "",
-    "output": "function removeDuplicates(arr) {\n  return [...new Set(arr)];\n}"
-  },
-  {
-    "instruction": "Write a Python function `is_even` that returns the square of a number.!'",
-    "input": "",
-    "output": "def is_even(x):\n    return x ** 2"
-  },
-  {
-    "instruction": "Write a Python function to check if a number is even.",
-    "input": "",
-    "output": "def is_even(n):\n    return n % 2 == 0"
-  },
-  {
-    "instruction": "What does this python code do?\n\nfor i in range(3): print(i)",
-    "input": "",
-    "output": "It prints the numbers 0, 1, and 2."
-  },
-  {
-    "instruction": "Write a function to reverse a string in Python.",
-    "input": "",
-    "output": "def reverse_string(s):\n    return s[::-1]"
-  },
-  {
-    "instruction": "Explain this javascript code: `typeof 42`",
-    "input": "",
-    "output": "It returns the type of the value 42, which is 'number'."
-  },
-  {
-    "instruction": "Write a function `creat_odd_list` that returns even numbers from 3 to n.",
-    "input": "",
-    "output": "def create_odd_list(n):\n    return list(range(3, n+1, 3))"
-  },
-  {
-    "instruction": "Write a JavaScript function to find the maximum of two numbers.",
-    "input": "",
-    "output": "function max(a, b) {\n  return a > b ? a : b;\n}"
-  },
-  {
-    "instruction": "Explain this code: `len('hello')`",
-    "input": "",
-    "output": "It returns the length of the string 'hello', which is 5."
-  },
-  {
-    "instruction": "Write a JavaScript function that returns the sum of two numbers.",
-    "input": "",
-    "output": "function sum(a, b) {\n  return a + b;\n}"
-  },
-  {
-    "instruction": "Write a Python class named `Dog` with a bark method.",
-    "input": "",
-    "output": "class Dog:\n    def bark(self):\n     print('Woof!')"
-  },
-  {
-    "instruction": "Write a Python function `is_even` that returns the square of a number.!'",
-    "input": "",
-    "output": "def is_even(x):\n    return x ** 2"
-  },
-  {
-    "instruction": "What does this python code do?\n\nfor i in range(3): print(i)",
-    "input": "",
-    "output": "It prints the numbers 0, 1, and 2."
-  },
-  {
-    "instruction": "What does this python code do?\n\nfor i in range(3): print(i)",
-    "input": "",
-    "output": "It prints the numbers 0, 1, and 2."
-  },
-  {
-    "instruction": "How do you open a file and read its content in Python?",
-    "input": "",
-    "output": "with open('file.txt', 'r') as f:\n    content = f.read()"
-  },
-  {
-    "instruction": "Write a Python function to sum all elements in a list.",
-    "input": "",
-    "output": "def sum_list(lst):\n    return sum(lst)"
-  },
-  {
-    "instruction": "Write a function to reverse a string in Python.",
-    "input": "",
-    "output": "def reverse_string(s):\n    return s[::-1]"
-  },
-  {
-    "instruction": "Write a Python function to check if a number is even.",
-    "input": "",
-    "output": "def is_even(n):\n    return n % 2 == 0"
-  },
-  {
-    "instruction": "Write a JavaScript function to sum all numbers in an array.",
-    "input": "",
-    "output": "function sumArray(arr) {\n  return arr.reduce((sum, num) => sum + num, 0);\n}"
-  },
-  {
-    "instruction": "Write a JavaScript function to check if a number is even.",
-    "input": "",
-    "output": "function isEven(n) {\n  return n % 2 === 0;\n}"
-  },
-  {
-    "instruction": "Create a javascript object `car` with properties `make`, `model`, and `year`.",
-    "input": "",
-    "output": "const car = {\n  make: 'Toyota',\n  model: 'Corolla',\n  year: 2020\n};"
-  },
-  {
-    "instruction": "Fix this python code: `for i in range(5) print(i)`",
-    "input": "",
-    "output": "for i in range(5):\n    print(i)"
-  },
-  {
-    "instruction": "Write a Python function to check if a number is even.",
-    "input": "",
-    "output": "def is_even(n):\n    return n % 2 == 0"
-  },
-  {
-    "instruction": "Explain this code: `len('hello')`",
-    "input": "",
-    "output": "It returns the length of the string 'hello', which is 5."
-  },
-  {
-    "instruction": "Write a Python function to calculate the factorial of a number.",
-    "input": "",
-    "output": "def factorial(n):\n    return 1 if n == 0 else n * factorial(n-1)"
-  },
-  {
-    "instruction": "Explain this javascript code: `typeof 42`",
-    "input": "",
-    "output": "It returns the type of the value 42, which is 'number'."
-  },
-  {
-    "instruction": "Explain this code: `'python'.upper()`",
-    "input": "",
-    "output": "It converts the string 'python' to uppercase: 'PYTHON'."
-  },
-  {
-    "instruction": "Create a javascript object `car` with properties `make`, `model`, and `year`.",
-    "input": "",
-    "output": "const car = {\n  make: 'Toyota',\n  model: 'Corolla',\n  year: 2020\n};"
-  },
-  {
-    "instruction": "Write a function `creat_odd_list` that returns even numbers from 3 to n.",
-    "input": "",
-    "output": "def create_odd_list(n):\n    return list(range(3, n+1, 3))"
-  },
-  {
-    "instruction": "Write a function that returns the Fibonacci sequence up to n terms in javascript.",
-    "input": "",
-    "output": "function fibonacci(n) {\n  const seq = [0, 1];\n  for (let i = 2; i < n; i++) {\n    seq.push(seq[i - 1] + seq[i - 2]);\n  }\n  return seq.slice(0, n);\n}"
-  },
-  {
-    "instruction": "Write a Python function to check if a number is even.",
-    "input": "",
-    "output": "def is_even(n):\n    return n % 2 == 0"
-  },
-  {
-    "instruction": "Explain this code: `'python'.upper()`",
-    "input": "",
-    "output": "It converts the string 'python' to uppercase: 'PYTHON'."
-  },
-  {
-    "instruction": "Create a javascript object `car` with properties `make`, `model`, and `year`.",
-    "input": "",
-    "output": "const car = {\n  make: 'Toyota',\n  model: 'Corolla',\n  year: 2020\n};"
-  },
-  {
-    "instruction": "Write a function to reverse a string in JavaScript.",
-    "input": "",
-    "output": "function reverseString(str) {\n  return str.split('').reverse().join('');\n}"
-  },
-  {
-    "instruction": "What does this python code do?\n\nfor i in range(3): print(i)",
-    "input": "",
-    "output": "It prints the numbers 0, 1, and 2."
-  },
-  {
-    "instruction": "Explain this code: `'python'.upper()`",
-    "input": "",
-    "output": "It converts the string 'python' to uppercase: 'PYTHON'."
-  },
-  {
-    "instruction": "Write a JavaScript function to sum all numbers in an array.",
-    "input": "",
-    "output": "function sumArray(arr) {\n  return arr.reduce((sum, num) => sum + num, 0);\n}"
-  },
-  {
-    "instruction": "Write a javascript program that logs numbers from 1 to 5 using a loop.",
-    "input": "",
-    "output": "for (let i = 1; i <= 5; i++) {\n  console.log(i);\n}"
-  },
-  {
-    "instruction": "Write a function `is_adult` that returns True if age >= 18.",
-    "input": "",
-    "output": "def is_adult(age):\n    return age >= 18"
-  },
-  {
-    "instruction": "Write a function to reverse a string in JavaScript.",
-    "input": "",
-    "output": "function reverseString(str) {\n  return str.split('').reverse().join('');\n}"
-  },
-  {
-    "instruction": "Write a Python function `is_even` that returns the square of a number.!'",
-    "input": "",
-    "output": "def is_even(x):\n    return x ** 2"
-  },
-  {
-    "instruction": "Write a JavaScript function that returns the sum of two numbers.",
-    "input": "",
-    "output": "function sum(a, b) {\n  return a + b;\n}"
-  },
-  {
-    "instruction": "Write a function to reverse a string in JavaScript.",
-    "input": "",
-    "output": "function reverseString(str) {\n  return str.split('').reverse().join('');\n}"
-  },
-  {
-    "instruction": "What does this python code do?\n\nfor i in range(3): print(i)",
-    "input": "",
-    "output": "It prints the numbers 0, 1, and 2."
-  },
-  {
-    "instruction": "Write a Python function `is_even` that returns the square of a number.!'",
-    "input": "",
-    "output": "def is_even(x):\n    return x ** 2"
-  },
-  {
-    "instruction": "Write a Python program that prints 'Hello, World!'",
-    "input": "",
-    "output": "print('Hello, World!'"
-  },
-  {
-    "instruction": "Write a Python program that adds 1 to any number.",
-    "input": "",
-    "output": "def increment(n):\n    return n + 1"
-  },
-  {
-    "instruction": "Explain this javascript code: `typeof 42`",
-    "input": "",
-    "output": "It returns the type of the value 42, which is 'number'."
-  },
-  {
-    "instruction": "Write a Python function to sum all elements in a list.",
-    "input": "",
-    "output": "def sum_list(lst):\n    return sum(lst)"
-  },
-  {
-    "instruction": "How to write a code to return minimum)`",
-    "input": "",
-    "output": "Put all numbers to list; min([2,0,5,7])"
-  },
-  {
-    "instruction": "Write a javascript program that logs numbers from 1 to 5 using a loop.",
-    "input": "",
-    "output": "for (let i = 1; i <= 5; i++) {\n  console.log(i);\n}"
-  },
-  {
-    "instruction": "Explain this code: `len('hello')`",
-    "input": "",
-    "output": "It returns the length of the string 'hello', which is 5."
-  },
-  {
-    "instruction": "Write a function to reverse a string in Python.",
-    "input": "",
-    "output": "def reverse_string(s):\n    return s[::-1]"
-  },
-  {
-    "instruction": "Write a javascript function to remove duplicates from an array.",
-    "input": "",
-    "output": "function removeDuplicates(arr) {\n  return [...new Set(arr)];\n}"
-  },
-  {
-    "instruction": "Write a JavaScript function to sum all numbers in an array.",
-    "input": "",
-    "output": "function sumArray(arr) {\n  return arr.reduce((sum, num) => sum + num, 0);\n}"
-  },
-  {
-    "instruction": "Write a Python program that adds 1 to any number.",
-    "input": "",
-    "output": "def increment(n):\n    return n + 1"
-  },
-  {
-    "instruction": "Write a function to reverse a string in Python.",
-    "input": "",
-    "output": "def reverse_string(s):\n    return s[::-1]"
-  },
-  {
-    "instruction": "Write a Python function to sum all elements in a list.",
-    "input": "",
-    "output": "def sum_list(lst):\n    return sum(lst)"
-  },
-  {
-    "instruction": "Write a Python class named `Dog` with a bark method.",
-    "input": "",
-    "output": "class Dog:\n    def bark(self):\n     print('Woof!')"
-  },
-  {
-    "instruction": "Write a function to reverse a string in JavaScript.",
-    "input": "",
-    "output": "function reverseString(str) {\n  return str.split('').reverse().join('');\n}"
-  },
-  {
-    "instruction": "Explain this code: `len('hello')`",
-    "input": "",
-    "output": "It returns the length of the string 'hello', which is 5."
-  },
-  {
-    "instruction": "Fix this python code: `for i in range(5) print(i)`",
-    "input": "",
-    "output": "for i in range(5):\n    print(i)"
-  },
-  {
-    "instruction": "Write a javascript function to check if a string is a palindrome.",
-    "input": "",
-    "output": "function isPalindrome(str) {\n  const reversed = str.split('').reverse().join('');\n  return str === reversed;\n}"
-  },
-  {
-    "instruction": "How do you open a file and read its content in Python?",
-    "input": "",
-    "output": "with open('file.txt', 'r') as f:\n    content = f.read()"
-  },
-  {
-    "instruction": "Write a function `creat_odd_list` that returns even numbers from 3 to n.",
-    "input": "",
-    "output": "def create_odd_list(n):\n    return list(range(3, n+1, 3))"
-  },
-  {
-    "instruction": "Write a javascript function to check if a string is a palindrome.",
-    "input": "",
-    "output": "function isPalindrome(str) {\n  const reversed = str.split('').reverse().join('');\n  return str === reversed;\n}"
-  },
-  {
-    "instruction": "Write a JavaScript function to sum all numbers in an array.",
-    "input": "",
-    "output": "function sumArray(arr) {\n  return arr.reduce((sum, num) => sum + num, 0);\n}"
-  },
-  {
-    "instruction": "How to write a code to return minimum)`",
-    "input": "",
-    "output": "Put all numbers to list; min([2,0,5,7])"
-  },
-  {
-    "instruction": "How do you open a file and read its content in Python?",
-    "input": "",
-    "output": "with open('file.txt', 'r') as f:\n    content = f.read()"
-  },
-  {
-    "instruction": "Explain this code: `max([5, 2, 8])`",
-    "input": "",
-    "output": "It returns the largest number in the list, which is 8."
-  },
-  {
-    "instruction": "Create a javascript function `isEmpty` that checks if a string is empty.",
-    "input": "",
-    "output": "function isEmpty(str) {\n  return str.length === 0;\n}"
-  },
-  {
-    "instruction": "Explain what this javascript code does: `[1, 2, 3].map(x => x * 2)`",
-    "input": "",
-    "output": "It creates a new array by doubling each element: [2, 4, 6]."
-  },
-  {
-    "instruction": "Write a javascript function to remove duplicates from an array.",
-    "input": "",
-    "output": "function removeDuplicates(arr) {\n  return [...new Set(arr)];\n}"
-  },
-  {
-    "instruction": "Write a Python program that adds 1 to any number.",
-    "input": "",
-    "output": "def increment(n):\n    return n + 1"
-  },
-  {
-    "instruction": "Write a function `creat_odd_list` that returns even numbers from 3 to n.",
-    "input": "",
-    "output": "def create_odd_list(n):\n    return list(range(3, n+1, 3))"
-  },
-  {
-    "instruction": "Explain this python code: `[x**2 for x in range(5)]`",
-    "input": "",
-    "output": "It returns a list of squares from 0 to 4: [0, 1, 4, 9, 16]."
-  },
-  {
-    "instruction": "Explain this javascript code: `typeof 42`",
-    "input": "",
-    "output": "It returns the type of the value 42, which is 'number'."
-  },
-  {
-    "instruction": "Create a javascript function `isEmpty` that checks if a string is empty.",
-    "input": "",
-    "output": "function isEmpty(str) {\n  return str.length === 0;\n}"
-  },
-  {
-    "instruction": "Write a JavaScript function that returns the sum of two numbers.",
-    "input": "",
-    "output": "function sum(a, b) {\n  return a + b;\n}"
-  },
-  {
-    "instruction": "Create a javascript function `isEmpty` that checks if a string is empty.",
-    "input": "",
-    "output": "function isEmpty(str) {\n  return str.length === 0;\n}"
-  },
-  {
-    "instruction": "Write a javascript function to remove duplicates from an array.",
-    "input": "",
-    "output": "function removeDuplicates(arr) {\n  return [...new Set(arr)];\n}"
-  },
-  {
-    "instruction": "Explain this javascript code: `'JavaScript'.includes('Script')`",
-    "input": "",
-    "output": "It checks if the string contains 'Script', and returns true."
-  },
-  {
-    "instruction": "Write a Python function to calculate the factorial of a number.",
-    "input": "",
-    "output": "def factorial(n):\n    return 1 if n == 0 else n * factorial(n-1)"
-  },
-  {
-    "instruction": "Explain this javascript code: `typeof 42`",
-    "input": "",
-    "output": "It returns the type of the value 42, which is 'number'."
-  },
-  {
-    "instruction": "Write a function to reverse a string in JavaScript.",
-    "input": "",
-    "output": "function reverseString(str) {\n  return str.split('').reverse().join('');\n}"
-  },
-  {
-    "instruction": "Write a Python function `is_even` that returns the square of a number.!'",
-    "input": "",
-    "output": "def is_even(x):\n    return x ** 2"
-  },
-  {
-    "instruction": "Explain this python code: `[x**2 for x in range(5)]`",
-    "input": "",
-    "output": "It returns a list of squares from 0 to 4: [0, 1, 4, 9, 16]."
-  },
-  {
-    "instruction": "Write a JavaScript function to check if a number is even.",
-    "input": "",
-    "output": "function isEven(n) {\n  return n % 2 === 0;\n}"
-  },
-  {
-    "instruction": "Write a function `is_adult` that returns True if age >= 18.",
-    "input": "",
-    "output": "def is_adult(age):\n    return age >= 18"
-  },
-  {
-    "instruction": "How to write a code to return minimum)`",
-    "input": "",
-    "output": "Put all numbers to list; min([2,0,5,7])"
-  },
-  {
-    "instruction": "Write a Python program that prints 'Hello, World!'",
-    "input": "",
-    "output": "print('Hello, World!'"
-  },
-  {
-    "instruction": "Write a Python function to sum all elements in a list.",
-    "input": "",
-    "output": "def sum_list(lst):\n    return sum(lst)"
-  },
-  {
-    "instruction": "Write a Python function `is_even` that returns the square of a number.!'",
-    "input": "",
-    "output": "def is_even(x):\n    return x ** 2"
-  },
-  {
-    "instruction": "Create a javascript object `car` with properties `make`, `model`, and `year`.",
-    "input": "",
-    "output": "const car = {\n  make: 'Toyota',\n  model: 'Corolla',\n  year: 2020\n};"
-  },
-  {
-    "instruction": "Explain this javascript code: `typeof 42`",
-    "input": "",
-    "output": "It returns the type of the value 42, which is 'number'."
-  },
-  {
-    "instruction": "Write a javascript program that logs numbers from 1 to 5 using a loop.",
-    "input": "",
-    "output": "for (let i = 1; i <= 5; i++) {\n  console.log(i);\n}"
-  },
-  {
-    "instruction": "Write a JavaScript function to find the maximum of two numbers.",
-    "input": "",
-    "output": "function max(a, b) {\n  return a > b ? a : b;\n}"
-  },
-  {
-    "instruction": "Explain what this javascript code does: `[1, 2, 3].map(x => x * 2)`",
-    "input": "",
-    "output": "It creates a new array by doubling each element: [2, 4, 6]."
-  },
-  {
-    "instruction": "Write a function `is_adult` that returns True if age >= 18.",
-    "input": "",
-    "output": "def is_adult(age):\n    return age >= 18"
-  },
-  {
-    "instruction": "Explain this code: `max([5, 2, 8])`",
-    "input": "",
-    "output": "It returns the largest number in the list, which is 8."
-  },
-  {
-    "instruction": "Write a function `is_adult` that returns True if age >= 18.",
-    "input": "",
-    "output": "def is_adult(age):\n    return age >= 18"
-  },
-  {
-    "instruction": "Write a JavaScript function to find the maximum of two numbers.",
-    "input": "",
-    "output": "function max(a, b) {\n  return a > b ? a : b;\n}"
-  },
-  {
-    "instruction": "Fix this python code: `for i in range(5) print(i)`",
-    "input": "",
-    "output": "for i in range(5):\n    print(i)"
-  },
-  {
-    "instruction": "Write a Python function to check if a number is even.",
-    "input": "",
-    "output": "def is_even(n):\n    return n % 2 == 0"
-  },
-  {
-    "instruction": "Explain this python code: `[x**2 for x in range(5)]`",
-    "input": "",
-    "output": "It returns a list of squares from 0 to 4: [0, 1, 4, 9, 16]."
-  },
-  {
-    "instruction": "Explain this code: `'python'.upper()`",
-    "input": "",
-    "output": "It converts the string 'python' to uppercase: 'PYTHON'."
-  },
-  {
-    "instruction": "Write a Python function `is_even` that returns the square of a number.!'",
-    "input": "",
-    "output": "def is_even(x):\n    return x ** 2"
-  },
-  {
-    "instruction": "Write a function that returns the Fibonacci sequence up to n terms in javascript.",
-    "input": "",
-    "output": "function fibonacci(n) {\n  const seq = [0, 1];\n  for (let i = 2; i < n; i++) {\n    seq.push(seq[i - 1] + seq[i - 2]);\n  }\n  return seq.slice(0, n);\n}"
-  },
-  {
-    "instruction": "Write a JavaScript function that returns the first element of an array.",
-    "input": "",
-    "output": "function getFirst(arr) {\n  return arr[0];\n}"
-  },
-  {
-    "instruction": "Write a function that returns the Fibonacci sequence up to n terms in javascript.",
-    "input": "",
-    "output": "function fibonacci(n) {\n  const seq = [0, 1];\n  for (let i = 2; i < n; i++) {\n    seq.push(seq[i - 1] + seq[i - 2]);\n  }\n  return seq.slice(0, n);\n}"
-  },
-  {
-    "instruction": "Write a JavaScript function that returns the first element of an array.",
-    "input": "",
-    "output": "function getFirst(arr) {\n  return arr[0];\n}"
-  },
-  {
-    "instruction": "Create a javascript function `isEmpty` that checks if a string is empty.",
-    "input": "",
-    "output": "function isEmpty(str) {\n  return str.length === 0;\n}"
-  },
-  {
-    "instruction": "Create a Python class called `Student` with a method named `introduce` that prints 'I am a student' when called.",
-    "input": "",
-    "output": "class Student:\n    def introduce(self):\n     print('I am a student')"
-  },
-  {
-    "instruction": "Write a JavaScript function that returns the first element of an array.",
-    "input": "",
-    "output": "function getFirst(arr) {\n  return arr[0];\n}"
-  },
-  {
-    "instruction": "Explain this code: `max([5, 2, 8])`",
-    "input": "",
-    "output": "It returns the largest number in the list, which is 8."
-  },
-  {
-    "instruction": "Write a Python class named `Dog` with a bark method.",
-    "input": "",
-    "output": "class Dog:\n    def bark(self):\n     print('Woof!')"
-  },
-  {
-    "instruction": "Write a function `creat_odd_list` that returns even numbers from 3 to n.",
-    "input": "",
-    "output": "def create_odd_list(n):\n    return list(range(3, n+1, 3))"
-  },
-  {
-    "instruction": "Write a Python function to check if a number is even.",
-    "input": "",
-    "output": "def is_even(n):\n    return n % 2 == 0"
-  },
-  {
-    "instruction": "Write a function `creat_odd_list` that returns even numbers from 3 to n.",
-    "input": "",
-    "output": "def create_odd_list(n):\n    return list(range(3, n+1, 3))"
-  },
-  {
-    "instruction": "Fix this python code: `for i in range(5) print(i)`",
-    "input": "",
-    "output": "for i in range(5):\n    print(i)"
-  },
-  {
-    "instruction": "What does this python code do?\n\nfor i in range(3): print(i)",
-    "input": "",
-    "output": "It prints the numbers 0, 1, and 2."
-  },
-  {
-    "instruction": "Write a javascript function to check if a string is a palindrome.",
-    "input": "",
-    "output": "function isPalindrome(str) {\n  const reversed = str.split('').reverse().join('');\n  return str === reversed;\n}"
-  },
-  {
-    "instruction": "Explain this code: `'python'.upper()`",
-    "input": "",
-    "output": "It converts the string 'python' to uppercase: 'PYTHON'."
-  },
-  {
-    "instruction": "Write a Python program that prints 'Hello, World!'",
-    "input": "",
-    "output": "print('Hello, World!'"
-  },
-  {
-    "instruction": "Fix this python code: `for i in range(5) print(i)`",
-    "input": "",
-    "output": "for i in range(5):\n    print(i)"
-  },
-  {
-    "instruction": "Write a Python class named `Dog` with a bark method.",
-    "input": "",
-    "output": "class Dog:\n    def bark(self):\n     print('Woof!')"
-  },
-  {
-    "instruction": "Explain what this javascript code does: `[1, 2, 3].map(x => x * 2)`",
-    "input": "",
-    "output": "It creates a new array by doubling each element: [2, 4, 6]."
-  },
-  {
-    "instruction": "Write a Python function to check if a number is even.",
-    "input": "",
-    "output": "def is_even(n):\n    return n % 2 == 0"
-  },
-  {
-    "instruction": "Explain this python code: `[x**2 for x in range(5)]`",
-    "input": "",
-    "output": "It returns a list of squares from 0 to 4: [0, 1, 4, 9, 16]."
-  },
-  {
-    "instruction": "How do you open a file and read its content in Python?",
-    "input": "",
-    "output": "with open('file.txt', 'r') as f:\n    content = f.read()"
-  },
-  {
-    "instruction": "Explain this javascript code: `typeof 42`",
-    "input": "",
-    "output": "It returns the type of the value 42, which is 'number'."
-  },
-  {
-    "instruction": "Write a function that returns the Fibonacci sequence up to n terms in javascript.",
-    "input": "",
-    "output": "function fibonacci(n) {\n  const seq = [0, 1];\n  for (let i = 2; i < n; i++) {\n    seq.push(seq[i - 1] + seq[i - 2]);\n  }\n  return seq.slice(0, n);\n}"
-  },
-  {
-    "instruction": "Explain what this javascript code does: `[1, 2, 3].map(x => x * 2)`",
-    "input": "",
-    "output": "It creates a new array by doubling each element: [2, 4, 6]."
-  },
-  {
-    "instruction": "Fix this python code: `for i in range(5) print(i)`",
-    "input": "",
-    "output": "for i in range(5):\n    print(i)"
-  },
-  {
-    "instruction": "Write a javascript function to check if a string is a palindrome.",
-    "input": "",
-    "output": "function isPalindrome(str) {\n  const reversed = str.split('').reverse().join('');\n  return str === reversed;\n}"
-  },
-  {
-    "instruction": "Write a function `creat_odd_list` that returns even numbers from 3 to n.",
-    "input": "",
-    "output": "def create_odd_list(n):\n    return list(range(3, n+1, 3))"
-  },
-  {
-    "instruction": "Explain this python code: `[x**2 for x in range(5)]`",
-    "input": "",
-    "output": "It returns a list of squares from 0 to 4: [0, 1, 4, 9, 16]."
-  },
-  {
-    "instruction": "Explain this python code: `[x**2 for x in range(5)]`",
-    "input": "",
-    "output": "It returns a list of squares from 0 to 4: [0, 1, 4, 9, 16]."
-  },
-  {
-    "instruction": "Write a javascript function to remove duplicates from an array.",
-    "input": "",
-    "output": "function removeDuplicates(arr) {\n  return [...new Set(arr)];\n}"
-  },
-  {
-    "instruction": "Fix this python code: `for i in range(5) print(i)`",
-    "input": "",
-    "output": "for i in range(5):\n    print(i)"
-  },
-  {
-    "instruction": "Explain what this javascript code does: `[1, 2, 3].map(x => x * 2)`",
-    "input": "",
-    "output": "It creates a new array by doubling each element: [2, 4, 6]."
-  },
-  {
-    "instruction": "How to write a code to return minimum)`",
-    "input": "",
-    "output": "Put all numbers to list; min([2,0,5,7])"
-  },
-  {
-    "instruction": "Write a Python function to check if a number is even.",
-    "input": "",
-    "output": "def is_even(n):\n    return n % 2 == 0"
-  },
-  {
-    "instruction": "Explain this javascript code: `'JavaScript'.includes('Script')`",
-    "input": "",
-    "output": "It checks if the string contains 'Script', and returns true."
-  },
-  {
-    "instruction": "Write a JavaScript function that returns the first element of an array.",
-    "input": "",
-    "output": "function getFirst(arr) {\n  return arr[0];\n}"
-  },
-  {
-    "instruction": "Write a JavaScript function to find the maximum of two numbers.",
-    "input": "",
-    "output": "function max(a, b) {\n  return a > b ? a : b;\n}"
-  },
-  {
-    "instruction": "Write a JavaScript function that returns the first element of an array.",
-    "input": "",
-    "output": "function getFirst(arr) {\n  return arr[0];\n}"
-  },
-  {
-    "instruction": "Write a javascript program that logs numbers from 1 to 5 using a loop.",
-    "input": "",
-    "output": "for (let i = 1; i <= 5; i++) {\n  console.log(i);\n}"
-  },
-  {
-    "instruction": "Write a Python function to sum all elements in a list.",
-    "input": "",
-    "output": "def sum_list(lst):\n    return sum(lst)"
-  },
-  {
-    "instruction": "Explain this code: `max([5, 2, 8])`",
-    "input": "",
-    "output": "It returns the largest number in the list, which is 8."
-  },
-  {
-    "instruction": "Write a javascript program that logs numbers from 1 to 5 using a loop.",
-    "input": "",
-    "output": "for (let i = 1; i <= 5; i++) {\n  console.log(i);\n}"
-  },
-  {
-    "instruction": "Write a Python function to calculate the factorial of a number.",
-    "input": "",
-    "output": "def factorial(n):\n    return 1 if n == 0 else n * factorial(n-1)"
-  },
-  {
-    "instruction": "Write a function to reverse a string in JavaScript.",
-    "input": "",
-    "output": "function reverseString(str) {\n  return str.split('').reverse().join('');\n}"
-  },
-  {
-    "instruction": "Write a function `is_adult` that returns True if age >= 18.",
-    "input": "",
-    "output": "def is_adult(age):\n    return age >= 18"
-  },
-  {
-    "instruction": "Create a javascript function `isEmpty` that checks if a string is empty.",
-    "input": "",
-    "output": "function isEmpty(str) {\n  return str.length === 0;\n}"
-  },
-  {
-    "instruction": "How to write a code to return minimum)`",
-    "input": "",
-    "output": "Put all numbers to list; min([2,0,5,7])"
-  },
-  {
-    "instruction": "Explain this javascript code: `typeof 42`",
-    "input": "",
-    "output": "It returns the type of the value 42, which is 'number'."
-  },
-  {
-    "instruction": "Write a javascript program that logs numbers from 1 to 5 using a loop.",
-    "input": "",
-    "output": "for (let i = 1; i <= 5; i++) {\n  console.log(i);\n}"
-  },
-  {
-    "instruction": "Explain this code: `len('hello')`",
-    "input": "",
-    "output": "It returns the length of the string 'hello', which is 5."
-  },
-  {
-    "instruction": "Write a function `is_adult` that returns True if age >= 18.",
-    "input": "",
-    "output": "def is_adult(age):\n    return age >= 18"
-  },
-  {
-    "instruction": "Explain this code: `max([5, 2, 8])`",
-    "input": "",
-    "output": "It returns the largest number in the list, which is 8."
-  },
-  {
-    "instruction": "Write a javascript program that logs numbers from 1 to 5 using a loop.",
-    "input": "",
-    "output": "for (let i = 1; i <= 5; i++) {\n  console.log(i);\n}"
-  },
-  {
-    "instruction": "Write a JavaScript function to sum all numbers in an array.",
-    "input": "",
-    "output": "function sumArray(arr) {\n  return arr.reduce((sum, num) => sum + num, 0);\n}"
-  },
-  {
-    "instruction": "Write a Python program that prints 'Hello, World!'",
-    "input": "",
-    "output": "print('Hello, World!'"
-  },
-  {
-    "instruction": "What does this python code do?\n\nfor i in range(3): print(i)",
-    "input": "",
-    "output": "It prints the numbers 0, 1, and 2."
-  },
-  {
-    "instruction": "Write a javascript program that logs numbers from 1 to 5 using a loop.",
-    "input": "",
-    "output": "for (let i = 1; i <= 5; i++) {\n  console.log(i);\n}"
-  },
-  {
-    "instruction": "Write a Python program that prints 'Hello, World!'",
-    "input": "",
-    "output": "print('Hello, World!'"
+    "level": "Beginner",
+    "question_list": [
+      {
+        "id": 1,
+        "question": "Write a Python function that returns the square of a number.",
+        "input": "",
+        "correct_answer": "def square(n):\n    return n ** 2"
+      },
+      {
+        "id": 2,
+        "question": "How do you print 'Hello, World!' in Python?",
+        "input": "",
+        "correct_answer": "print('Hello, World!')"
+      },
+      {
+        "id": 3,
+        "question": "Write a function to add two numbers in Python.",
+        "input": "",
+        "correct_answer": "def add(a, b):\n    return a + b"
+      },
+      {
+        "id": 4,
+        "question": "How to check if a number is even in Python?",
+        "input": "",
+        "correct_answer": "def is_even(n):\n    return n % 2 == 0"
+      },
+      {
+        "id": 5,
+        "question": "Write a function to return the first element of a list.",
+        "input": "",
+        "correct_answer": "def first_element(lst):\n    return lst[0]"
+      },
+      {
+        "id": 6,
+        "question": "How to reverse a string in Python?",
+        "input": "",
+        "correct_answer": "def reverse_string(s):\n    return s[::-1]"
+      },
+      {
+        "id": 7,
+        "question": "What does the 'len' function do in Python?",
+        "input": "",
+        "correct_answer": "len('apple')"
+      },
+      {
+        "id": 8,
+        "question": "Write a for-loop that prints numbers from 1 to 3.",
+        "input": "",
+        "correct_answer": "for i in range(1, 4):\n    print(i)"
+      },
+      {
+        "id": 9,
+        "question": "Write a function to return the maximum of two numbers.",
+        "input": "",
+        "correct_answer": "def max_of_two(a, b):\n    return a if a > b else b"
+      },
+      {
+        "id": 10,
+        "question": "What is the output of 'type(42)' in Python?",
+        "input": "",
+        "correct_answer": "<class 'int'>"
+      }
+    ]
+  },
+  {
+    "level": "Medium",
+    "question_list": [
+      {
+        "id": 1,
+        "question": "Write a Python function that checks whether a string is a palindrome.",
+        "input": "",
+        "correct_answer": "def is_palindrome(s):\n    return s == s[::-1]"
+      },
+      {
+        "id": 2,
+        "question": "Write a Python function to return the second largest number in a list.",
+        "input": "",
+        "correct_answer": "def second_largest(lst):\n    return sorted(set(lst))[-2]"
+      },
+      {
+        "id": 3,
+        "question": "Write a Python function to merge two dictionaries.",
+        "input": "",
+        "correct_answer": "def merge_dicts(d1, d2):\n    return {**d1, **d2}"
+      },
+      {
+        "id": 4,
+        "question": "Write a Python function to count the frequency of each character in a string.",
+        "input": "",
+        "correct_answer": "def char_freq(s):\n    return {char: s.count(char) for char in set(s)}"
+      },
+      {
+        "id": 5,
+        "question": "Write a Python function to get all prime numbers up to a number n.",
+        "input": "",
+        "correct_answer": "def primes_upto(n):\n    return [x for x in range(2, n+1) if all(x % d != 0 for d in range(2, int(x**0.5)+1))]"
+      },
+      {
+        "id": 6,
+        "question": "Write a Python program to flatten a nested list.",
+        "input": "",
+        "correct_answer": "def flatten(lst):\n    return [item for sublist in lst for item in sublist]"
+      },
+      {
+        "id": 7,
+        "question": "Write a Python function to check if two strings are anagrams.",
+        "input": "",
+        "correct_answer": "def are_anagrams(s1, s2):\n    return sorted(s1) == sorted(s2)"
+      },
+      {
+        "id": 8,
+        "question": "Write a Python function to find all duplicates in a list.",
+        "input": "",
+        "correct_answer": "def find_duplicates(lst):\n    return list(set([x for x in lst if lst.count(x) > 1]))"
+      },
+      {
+        "id": 9,
+        "question": "Write a Python function to find the GCD of two numbers.",
+        "input": "",
+        "correct_answer": "def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a"
+      },
+      {
+        "id": 10,
+        "question": "Write a Python function that returns a dictionary of even numbers from 1 to n with their squares.",
+        "input": "",
+        "correct_answer": "def even_squares(n):\n    return {x: x**2 for x in range(2, n+1, 2)}"
+      }
+    ]
+  },
+  {
+    "level": "Hard",
+    "question_list": [
+      {
+        "id": 1,
+        "question": "Write a Python generator function to yield Fibonacci numbers up to n.",
+        "input": "",
+        "correct_answer": "def fib_gen(n):\n    a, b = 0, 1\n    while a < n:\n        yield a\n        a, b = b, a + b"
+      },
+      {
+        "id": 2,
+        "question": "Write a decorator in Python that logs function calls.",
+        "input": "",
+        "correct_answer": "def log(func):\n    def wrapper(*args, **kwargs):\n        print(f\"Calling {func.__name__}\")\n        return func(*args, **kwargs)\n    return wrapper"
+      },
+      {
+        "id": 3,
+        "question": "How to create a class `Student` with a method `get_grade` that returns 'A'?",
+        "input": "",
+        "correct_answer": "class Student:\n    def get_grade(self):\n        return 'A'"
+      },
+      {
+        "id": 4,
+        "question": "Write a function that recursively calculates the factorial of n.",
+        "input": "",
+        "correct_answer": "def factorial(n):\n    return 1 if n == 0 else n * factorial(n - 1)"
+      },
+      {
+        "id": 5,
+        "question": "How to catch and handle a division by zero error?",
+        "input": "",
+        "correct_answer": "try:\n    result = 5 / 0\nexcept ZeroDivisionError:\n    result = 'Error: Division by zero'"
+      },
+      {
+        "id": 6,
+        "question": "Create a function using list comprehension to return squares of even numbers in a list.",
+        "input": "",
+        "correct_answer": "def even_squares(lst):\n    return [x**2 for x in lst if x % 2 == 0]"
+      },
+      {
+        "id": 7,
+        "question": "How to read a file line by line and store lines in a list?",
+        "input": "",
+        "correct_answer": "with open('file.txt', 'r') as f:\n    lines = f.readlines()"
+      },
+      {
+        "id": 8,
+        "question": "Write a function that returns all prime numbers less than n.",
+        "input": "",
+        "correct_answer": "def primes(n):\n    return [x for x in range(2, n) if all(x % y != 0 for y in range(2, int(x**0.5)+1))]"
+      },
+      {
+        "id": 9,
+        "question": "Create a Python lambda function that multiplies two numbers.",
+        "input": "",
+        "correct_answer": "multiply = lambda a, b: a * b"
+      },
+      {
+        "id": 10,
+        "question": "Write a Python function to flatten a nested list.",
+        "input": "",
+        "correct_answer": "def flatten(lst):\n    return [item for sublist in lst for item in sublist]"
+      }
+    ]
   }
 ]
