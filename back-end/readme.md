@@ -86,3 +86,27 @@ npm start
 ---
 
 > ✅ Application should now be running with both front-end and back-end servers.
+
+# Database Setup Guide
+
+# 1 Create a Database
+```bash
+
+CREATE DATABASE code_assistant;"
+
+```
+
+---
+# 2 set DB connection
+```bash
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:<your_password>@localhost:3306/code_assistant'
+```
+---
+# 3 migration steps
+```bash
+export FLASK_APP=app.py  # or set FLASK_APP=app.py on Windows
+flask db init
+flask db migrate -m "Initial migration"
+flask db upgrade
+
+```
