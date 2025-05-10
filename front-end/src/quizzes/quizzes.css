@@ -1,51 +1,172 @@
+:root {
+  --primary-color: #007bff;
+  --primary-dark: #0056b3;
+  --bg-light: #f8f9fa;
+  --fg-dark: #222;
+  --card-bg: #fff;
+  --card-border: #ddd;
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
+  --font-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Reset & Base */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
-.quiz-page {
+body,
+html {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-light);
+  color: var(--fg-dark);
+  font-family: var(--font-base);
+}
+
+/* Header & Navigation */
+.main-header {
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.main-menu {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.main-menu a {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  padding: 4px 0;
+  transition: color var(--transition-speed);
+}
+
+.main-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width var(--transition-speed);
+}
+
+.main-menu a:hover::after {
+  width: 100%;
+}
+
+/* Layout */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
   display: flex;
   gap: 20px;
   padding: 20px;
-}
-
-.quiz-left,
-.quiz-right {
   flex: 1;
+  flex-wrap: wrap;
 }
 
-.question-card,
-.empty-card {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+.left-panel,
+.right-panel {
+  flex: 1;
+  min-width: 280px;
+}
+
+/* Cards & Sections */
+.section-card,
+.question-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius);
   padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.section-card:hover,
+.question-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.enhanced-card {
+  /* Inherited hover effect */
+}
+
+/* Text Areas */
+.text-answer {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  resize: vertical;
+  border: 1px solid var(--card-border);
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Buttons & Choices */
+button,
+.choice-button {
+  padding: 10px 14px;
+  margin-top: 10px;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background var(--transition-speed), transform var(--transition-speed);
+}
+
+button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+button:hover {
+  background-color: var(--primary-dark);
 }
 
 .choice-button {
   display: block;
   width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
   text-align: left;
-  cursor: pointer;
-  color: black;
+  background-color: var(--card-bg);
+  color: var(--fg-dark);
+  border: 1px solid var(--card-border);
 }
 
 .choice-button:hover {
-  background: #e0e0e0;
+  background-color: var(--bg-light);
 }
 
 .choice-button.selected {
-  background-color: #007bff;
+  background-color: var(--primary-color);
   color: white;
   border: none;
 }
 
+.choice-button:active,
+button:active {
+  transform: scale(0.98);
+}
+
+/* Modal */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -60,17 +181,41 @@
 }
 
 .modal-content {
-  background: white;
+  background: var(--card-bg);
   padding: 30px;
-  border-radius: 12px;
-  max-height: 80vh;
-  overflow-y: auto;
+  border-radius: var(--border-radius);
   width: 90%;
   max-width: 600px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  text-align: left;
 }
 
 .modal-content h2 {
   margin-top: 0;
   text-align: center;
+}
+
+/* Questions */
+.question-number {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.question-text {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.choices-list {
+  margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+    padding: 10px;
+  }
 }
