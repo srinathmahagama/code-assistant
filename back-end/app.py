@@ -7,6 +7,8 @@ from flask_migrate import Migrate
 from config import Config
 from extensions import db, migrate
 from models import User
+import json
+from sentence_transformers import SentenceTransformer, util
 
 
 app = Flask(__name__)
@@ -22,6 +24,16 @@ tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
 model = AutoModelForCausalLM.from_pretrained(MODEL_PATH)
 
 tokenizer.pad_token = tokenizer.eos_token
+
+# Load embedding model
+embedder = SentenceTransformer('all-MiniLM-L6-v2')
+
+with open("dataset.json") as f:
+    knowledge_base = json.load(f)
+
+instruction_texts = [item["instruction"] for item in knowledge_base]
+instruction_embeddings = embedder.encode(instruction_texts, convert_to_tensor=True)
+
 
 @app.route('/')
 def index():
@@ -60,6 +72,24 @@ def generate():
     return jsonify({
         "instruction": instruction,
         "generated": generated
+    })
+    
+@app.route("/ask", methods=["POST"])
+def ask():
+    data = request.get_json()
+    instruction = data.get("instruction", "").strip()
+    if not instruction:
+        return jsonify({"error": "Missing instruction"}), 400
+
+    query_embedding = embedder.encode(instruction, convert_to_tensor=True)
+    scores = util.cos_sim(query_embedding, instruction_embeddings)[0]
+    top_idx = scores.argmax().item()
+    match = knowledge_base[top_idx]
+
+    return jsonify({
+        "instruction": instruction,
+        "matched_instruction": match["instruction"],
+        "generated": match["output"]
     })
 
 if __name__ == "__main__":
