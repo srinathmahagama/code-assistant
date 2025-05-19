@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import "./quizzes.css";
 import "../App.css";
 import CodeHelper from "../components/codeHelper";
+import { fetchAIReview } from "./components/kewFeature";
 
 const PythonQuizzesPage = () => {
   const location = useLocation();
@@ -15,6 +16,8 @@ const PythonQuizzesPage = () => {
   const [showResult, setShowResult] = useState(false);
   const [loading, setLoading] = useState(true);
   const [quizLevel, setQuizLevel] = useState(defaultLevel);
+  const [aiSummary, setAiSummary] = useState("");
+  const [aiMotivation, setAiMotivation] = useState("");
 
   const loadQuestions = (level) => {
     setLoading(true);
@@ -58,8 +61,8 @@ const PythonQuizzesPage = () => {
 
     const isCorrect = userAnswer.toLowerCase() === correctAnswer.toLowerCase();
 
-    setUserAnswers((prev) => [
-      ...prev,
+    const updatedAnswers = [
+      ...userAnswers,
       {
         questionId: currentQuestion.id,
         question: currentQuestion.question,
@@ -68,13 +71,22 @@ const PythonQuizzesPage = () => {
         isCorrect,
         mark: currentQuestion.mark,
       },
-    ]);
+    ];
+
+    setUserAnswers(updatedAnswers);
 
     if (currentIndex + 1 < questions.length) {
       setCurrentIndex(currentIndex + 1);
       setAnswers({});
     } else {
       setShowResult(true);
+      fetchAIReview(
+        updatedAnswers.filter((a) => a.isCorrect).length,
+        questions.length,
+        updatedAnswers,
+        setAiSummary,
+        setAiMotivation
+      );
     }
   };
 
@@ -83,6 +95,8 @@ const PythonQuizzesPage = () => {
     setAnswers({});
     setUserAnswers([]);
     setShowResult(false);
+    setAiSummary("");
+    setAiMotivation("");
     loadQuestions(quizLevel);
   };
 
@@ -103,17 +117,6 @@ const PythonQuizzesPage = () => {
         <div className="left-panel">
           <div className="level-select">
             <label>Select Level: {quizLevel}</label>
-            {/* <select
-              value={quizLevel}
-              onChange={(e) => {
-                setQuizLevel(e.target.value);
-                restartQuiz();
-              }}
-            >
-              <option value="beginner">Beginner</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select> */}
           </div>
 
           {loading ? (
@@ -175,6 +178,21 @@ const PythonQuizzesPage = () => {
               🏁 Total Score: {userAnswers.filter((a) => a.isCorrect).length} /{" "}
               {questions.length}
             </p>
+
+            {aiSummary && (
+              <div className="ai-section">
+                <h3>📘 AI Performance Review</h3>
+                <p>{aiSummary}</p>
+              </div>
+            )}
+
+            {aiMotivation && (
+              <div className="ai-section">
+                <h3>💬 CoachBot says:</h3>
+                <p>{aiMotivation}</p>
+              </div>
+            )}
+
             <button onClick={restartQuiz}>Try Again</button>
           </div>
         </div>
