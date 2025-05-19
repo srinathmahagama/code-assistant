@@ -1,8 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import CodeHelper from './components/codeHelper';
+import { codeHelperEvents } from './components/codeHelper';
+
+
 
 const App = () => {
+  const [recommendedLessons, setRecommendedLessons] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showRecommendations, setShowRecommendations] = useState(false);
+
+  useEffect(() => {
+    const handleNewInstructions = (combinedQuestions) => {
+      setIsLoading(true);
+      fetch(`http://localhost:5000/recommend?input=${encodeURIComponent(combinedQuestions)}`)
+        .then(res => res.json())
+        .then(data => {
+          if (!data.error) {
+            setRecommendedLessons(data.lessons || []);
+            setShowRecommendations(true);
+          }
+        })
+        .catch(err => console.error("Recommendation error:", err))
+        .finally(() => setIsLoading(false));
+    };
+
+    codeHelperEvents.on('newInstructions', handleNewInstructions);
+    
+    return () => {
+      codeHelperEvents.off('newInstructions', handleNewInstructions);
+    };
+  }, []);
+
   return (
     <div className="app-layout">
       <header className="main-header">
@@ -27,6 +56,27 @@ const App = () => {
               <li><strong>Lesson 5:</strong> Lists and Dictionaries</li>
             </ul>
             <p>Master Python from the ground up. Each lesson includes examples and exercises.</p>
+          
+            {showRecommendations && (
+              <div className="recommendation-section">
+                <h3>🎯 Recommended For You</h3>
+                {isLoading ? (
+                  <p className="loading-text">Finding the best lessons...</p>
+                ) : recommendedLessons.length > 0 ? (
+                  <ul className="recommended-lessons">
+                    {recommendedLessons.map((lesson, index) => (
+                      <li key={index}>
+                        <strong>{lesson.title}</strong> (Level {lesson.level})
+                        <p className="lesson-keywords">{lesson.keywords}</p>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="no-recommendations">No specific recommendations found. Keep asking questions!</p>
+                )}
+              </div>
+            )}
+          
           </section>
 
           <section className="section-card enhanced-card" id="quizzes">

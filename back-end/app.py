@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 from flask_cors import CORS
+from recommend_lesson import recommend_lesson
 
 app = Flask(__name__)
 CORS(app)
@@ -39,5 +40,25 @@ def generate():
         "generated": generated
     })
 
+@app.route("/recommend", methods=["GET"])
+def recommend():
+    user_input = request.args.get("input", "").strip()
+    
+    if not user_input:
+        return jsonify({
+            "error": "Empty input",
+            "message": "Please provide a question about programming"
+        }), 400
+
+    result = recommend_lesson(user_input)
+    return jsonify({
+        "level": result["level"],
+        "label": result["label"],
+        "lessons": result["recommended_lessons"]
+    })
+
 if __name__ == "__main__":
     app.run(debug=True)
+
+#if __name__ == "__main__":
+#    app.run(host="0.0.0.0", port=5002, debug=True)
