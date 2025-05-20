@@ -1,65 +1,108 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./quizzes.css";
 import "../App.css";
 import CodeHelper from "../components/codeHelper";
+// import { fetchAIReview } from "./components/kewFeature";
+import { fetchQuizzesFromAPI } from "../services/api";
 
-// Dummy quiz data (later replace with API data)
-const dummyQuestions = [
-  {
-    id: 1,
-    question: "What does 'var' keyword do in JavaScript?",
-    type: "choice",
-    choices: [
-      "Declares a block-scoped variable",
-      "Declares a variable globally or function-scoped",
-      "Defines a constant",
-      "Creates a class",
-    ],
-  },
-  {
-    id: 2,
-    question: "Which of the following is NOT a JavaScript data type?",
-    type: "choice",
-    choices: ["Boolean", "Undefined", "Float", "Object"],
-  },
-  {
-    id: 3,
-    question: "Fill in the blank: JavaScript runs in the ____.",
-    type: "text",
-    choices: [],
-  },
-  {
-    id: 4,
-    question: "Which symbol is used for comments in JavaScript?",
-    type: "choice",
-    choices: [
-      "// for single-line comments",
-      "/* */ for single-line comments",
-      "<!-- --> for comments",
-      "# for comments",
-    ],
-  },
-  {
-    id: 5,
-    question:
-      "Write a line of JavaScript code to declare a variable named 'score' and assign it the value 100.",
-    type: "text",
-    choices: [],
-  },
-];
+const PythonQuizzesPage = () => {
+  const location = useLocation();
+  const defaultLevel = location.state?.level || "Beginner";
 
-const JavaScriptQuizzesPage = () => {
+  const [questions, setQuestions] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState({});
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [showResult, setShowResult] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [quizLevel, setQuizLevel] = useState(defaultLevel);
+  // const [aiSummary, setAiSummary] = useState("");
+  // const [aiMotivation, setAiMotivation] = useState("");
 
-  const handleChoiceClick = (questionId, choice) => {
-    setAnswers((prev) => ({ ...prev, [questionId]: choice }));
-    console.log("Selected choice:", choice);
+  const loadQuestions = async (level) => {
+    setLoading(true);
+    try {
+      const allQuizzes = await fetchQuizzesFromAPI();
+
+      const filtered = allQuizzes.filter(
+        (item) =>
+          item.difficulty.toLowerCase() === level.toLowerCase() &&
+          item.language.toLowerCase() === "javascript"
+      );
+
+      const formatted = filtered.map((item) => ({
+        id: item.id,
+        question: item.question,
+        type: "text",
+        choices: [],
+        correct_answer: item.correct_answer?.trim() || "",
+        mark: 1,
+      }));
+
+      setQuestions(formatted.slice(0, 10));
+    } catch (err) {
+      console.error("Failed to load questions:", err);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  useEffect(() => {
+    loadQuestions(quizLevel);
+  }, [quizLevel]);
 
   const handleTextChange = (questionId, text) => {
-    setAnswers((prev) => ({ ...prev, [questionId]: text }));
-    console.log("Typed answer:", text);
+    setAnswers({ [questionId]: text });
   };
+
+  const handleSubmit = () => {
+    const currentQuestion = questions[currentIndex];
+    const userAnswer = answers[currentQuestion.id]?.trim() || "";
+    const correctAnswer = currentQuestion.correct_answer;
+
+    const isCorrect = userAnswer.toLowerCase() === correctAnswer.toLowerCase();
+
+    const updatedAnswers = [
+      ...userAnswers,
+      {
+        questionId: currentQuestion.id,
+        question: currentQuestion.question,
+        userAnswer,
+        correctAnswer,
+        isCorrect,
+        mark: currentQuestion.mark,
+      },
+    ];
+
+    setUserAnswers(updatedAnswers);
+
+    if (currentIndex + 1 < questions.length) {
+      setCurrentIndex(currentIndex + 1);
+      setAnswers({});
+    } else {
+      setShowResult(true);
+      // fetchAIReview(
+      //   updatedAnswers.filter((a) => a.isCorrect).length,
+      //   questions.length,
+      //   updatedAnswers,
+      //   setAiSummary,
+      //   setAiMotivation
+      // );
+    }
+  };
+
+  const restartQuiz = () => {
+    setCurrentIndex(0);
+    setAnswers({});
+    setUserAnswers([]);
+    setShowResult(false);
+    // setAiSummary("");
+    // setAiMotivation("");
+    loadQuestions(quizLevel);
+  };
+
+  const currentQuestion = questions[currentIndex];
 
   return (
     <div className="app-layout">
@@ -74,40 +117,35 @@ const JavaScriptQuizzesPage = () => {
 
       <div className="main-content">
         <div className="left-panel">
-          {dummyQuestions.length > 0 ? (
-            dummyQuestions.map((questionItem, index) => (
-              <div className="question-card" key={questionItem.id}>
-                <div className="question-number">Quiz {index + 1}</div>
-                <div className="question-text">{questionItem.question}</div>
-                <div className="choices-list">
-                  {questionItem.type === "choice" ? (
-                    questionItem.choices.map((choice, choiceIndex) => (
-                      <button
-                        key={choiceIndex}
-                        className={`choice-button ${
-                          answers[questionItem.id] === choice ? "selected" : ""
-                        }`}
-                        onClick={() =>
-                          handleChoiceClick(questionItem.id, choice)
-                        }
-                      >
-                        {choice}
-                      </button>
-                    ))
-                  ) : (
-                    <textarea
-                      placeholder="Type your answer here..."
-                      className="text-answer"
-                      onChange={(e) =>
-                        handleTextChange(questionItem.id, e.target.value)
-                      }
-                    />
-                  )}
-                </div>
+          <div className="level-select">
+            <label>Select Level: {quizLevel}</label>
+          </div>
+
+          {loading ? (
+            <p>Loading questions...</p>
+          ) : currentQuestion ? (
+            <div className="question-card">
+              <div className="question-number">
+                Question {currentIndex + 1} of {questions.length}
               </div>
-            ))
+              <div className="question-text">{currentQuestion.question}</div>
+              <textarea
+                placeholder="Type your answer here..."
+                className="text-answer"
+                value={answers[currentQuestion.id] || ""}
+                onChange={(e) =>
+                  handleTextChange(currentQuestion.id, e.target.value)
+                }
+              />
+              <button
+                onClick={handleSubmit}
+                disabled={!answers[currentQuestion.id]}
+              >
+                Submit Answer
+              </button>
+            </div>
           ) : (
-            <p>No questions found.</p>
+            <p>No questions found for this level.</p>
           )}
         </div>
 
@@ -117,8 +155,52 @@ const JavaScriptQuizzesPage = () => {
           </section>
         </div>
       </div>
+
+      {showResult && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2>Quiz Result Summary</h2>
+            <ul>
+              {userAnswers.map((ans, index) => (
+                <li key={index}>
+                  <strong>Q{index + 1}:</strong> {ans.question}
+                  <br />✅ Correct answer: <strong>{ans.correctAnswer}</strong>
+                  <br />
+                  📝 Your answer: <span>{ans.userAnswer}</span>
+                  <br />
+                  Result:{" "}
+                  <span style={{ color: ans.isCorrect ? "green" : "red" }}>
+                    {ans.isCorrect ? "Correct" : "Wrong"}
+                  </span>
+                  <hr />
+                </li>
+              ))}
+            </ul>
+            <p>
+              🏁 Total Score: {userAnswers.filter((a) => a.isCorrect).length} /{" "}
+              {questions.length}
+            </p>
+            {/* kewFeature implement */}
+            {/* {aiSummary && (
+              <div className="ai-section">
+                <h3>📘 AI Performance Review</h3>
+                <p>{aiSummary}</p>
+              </div>
+            )}
+
+            {aiMotivation && (
+              <div className="ai-section">
+                <h3>💬 CoachBot says:</h3>
+                <p>{aiMotivation}</p>
+              </div>
+            )} */}
+
+            <button onClick={restartQuiz}>Try Again</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-export default JavaScriptQuizzesPage;
+export default PythonQuizzesPage;

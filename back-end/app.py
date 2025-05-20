@@ -8,7 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from config import Config
 from extensions import db, migrate
-from models import User
+from models import User, Quizz, QuizLevel
 import json
 from sentence_transformers import SentenceTransformer, util
 
@@ -48,6 +48,40 @@ def create_user():
     db.session.add(user)
     db.session.commit()
     return jsonify({"id": user.id, "name": user.name}), 201
+
+@app.route('/quizzes', methods=['POST'])
+def create_quiz():
+    data = request.get_json()
+    quiz = Quizz(
+        question_text=data['question'],
+        correct_answer=data['correct_answer'],
+        question_type=data['question_type'],
+        language=data['language'],
+        difficulty=data['difficulty']
+    )
+    db.session.add(quiz)
+    db.session.commit()
+    return jsonify({
+        "id": quiz.id,
+        "question": quiz.question_text,
+        "correct_answer": quiz.correct_answer,
+        "question_type": quiz.question_type,
+        "language": quiz.language,
+        "difficulty": quiz.difficulty
+    }), 201
+    
+@app.route("/quiz_levels", methods=["POST"])
+def create_quiz_level():
+    data = request.get_json()
+    new_level = QuizLevel(
+        level=data["level"],
+        title=data["title"],
+        topic=data["topic"],
+        description=data["description"]
+    )
+    db.session.add(new_level)
+    db.session.commit()
+    return jsonify({"message": f"Level '{new_level.level}' added successfully!"}), 201
 
 @app.route("/generate", methods=["POST"])
 def generate():
@@ -93,6 +127,36 @@ def ask():
         "matched_instruction": match["instruction"],
         "generated": match["output"]
     })
+    
+@app.route("/quizzes", methods=["GET"])
+def get_quizzes():
+    quizzes = Quizz.query.all()
+    result = [
+        {
+            "id": q.id,
+            "question": q.question_text,
+            "correct_answer": q.correct_answer,
+            "question_type": q.question_type,
+            "language": q.language,
+            "difficulty": q.difficulty
+        }
+        for q in quizzes
+    ]
+    return jsonify(result)
+
+@app.route("/quiz_levels", methods=["GET"])
+def get_quiz_levels():
+    levels = QuizLevel.query.all()
+    return jsonify([
+        {
+            "level": lvl.level,
+            "title": lvl.title,
+            "topic": lvl.topic,
+            "description": lvl.description,
+            "quiz_type": lvl.quiz_type,
+        }
+        for lvl in levels
+    ])
 
 @app.route("/recommend", methods=["GET"])
 def recommend():

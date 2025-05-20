@@ -3,7 +3,8 @@ import { useLocation } from "react-router-dom";
 import "./quizzes.css";
 import "../App.css";
 import CodeHelper from "../components/codeHelper";
-import { fetchAIReview } from "./components/kewFeature";
+// import { fetchAIReview } from "./components/kewFeature";
+import { fetchQuizzesFromAPI } from "../services/api";
 
 const PythonQuizzesPage = () => {
   const location = useLocation();
@@ -16,34 +17,35 @@ const PythonQuizzesPage = () => {
   const [showResult, setShowResult] = useState(false);
   const [loading, setLoading] = useState(true);
   const [quizLevel, setQuizLevel] = useState(defaultLevel);
-  const [aiSummary, setAiSummary] = useState("");
-  const [aiMotivation, setAiMotivation] = useState("");
+  // const [aiSummary, setAiSummary] = useState("");
+  // const [aiMotivation, setAiMotivation] = useState("");
 
-  const loadQuestions = (level) => {
+  const loadQuestions = async (level) => {
     setLoading(true);
-    fetch("/dataset.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const levelData = data.find((item) => item.level === level);
-        if (levelData) {
-          const formatted = levelData.question_list.map((item) => ({
-            id: item.id,
-            question: item.question,
-            type: "text",
-            choices: [],
-            correct_answer: item.correct_answer?.trim() || "",
-            mark: 1,
-          }));
-          setQuestions(formatted.slice(0, 10));
-        } else {
-          console.error("Selected level not found.");
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Failed to load questions:", err);
-        setLoading(false);
-      });
+    try {
+      const allQuizzes = await fetchQuizzesFromAPI();
+
+      const filtered = allQuizzes.filter(
+        (item) =>
+          item.difficulty.toLowerCase() === level.toLowerCase() &&
+          item.language.toLowerCase() === "python"
+      );
+
+      const formatted = filtered.map((item) => ({
+        id: item.id,
+        question: item.question,
+        type: "text",
+        choices: [],
+        correct_answer: item.correct_answer?.trim() || "",
+        mark: 1,
+      }));
+
+      setQuestions(formatted.slice(0, 10));
+    } catch (err) {
+      console.error("Failed to load questions:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -80,13 +82,13 @@ const PythonQuizzesPage = () => {
       setAnswers({});
     } else {
       setShowResult(true);
-      fetchAIReview(
-        updatedAnswers.filter((a) => a.isCorrect).length,
-        questions.length,
-        updatedAnswers,
-        setAiSummary,
-        setAiMotivation
-      );
+      // fetchAIReview(
+      //   updatedAnswers.filter((a) => a.isCorrect).length,
+      //   questions.length,
+      //   updatedAnswers,
+      //   setAiSummary,
+      //   setAiMotivation
+      // );
     }
   };
 
@@ -95,8 +97,8 @@ const PythonQuizzesPage = () => {
     setAnswers({});
     setUserAnswers([]);
     setShowResult(false);
-    setAiSummary("");
-    setAiMotivation("");
+    // setAiSummary("");
+    // setAiMotivation("");
     loadQuestions(quizLevel);
   };
 
@@ -178,8 +180,8 @@ const PythonQuizzesPage = () => {
               🏁 Total Score: {userAnswers.filter((a) => a.isCorrect).length} /{" "}
               {questions.length}
             </p>
-
-            {aiSummary && (
+            {/* kewFeature implement */}
+            {/* {aiSummary && (
               <div className="ai-section">
                 <h3>📘 AI Performance Review</h3>
                 <p>{aiSummary}</p>
@@ -191,7 +193,7 @@ const PythonQuizzesPage = () => {
                 <h3>💬 CoachBot says:</h3>
                 <p>{aiMotivation}</p>
               </div>
-            )}
+            )} */}
 
             <button onClick={restartQuiz}>Try Again</button>
           </div>
