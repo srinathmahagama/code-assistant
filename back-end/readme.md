@@ -85,6 +85,9 @@ npm start
 
 ---
 
+
+> ✅ Application updated should now be running with both front-end and back-end servers.
+
 > ✅ Application should now be running with both front-end and back-end servers.
 
 # Database Setup Guide
@@ -110,3 +113,4 @@ flask db migrate -m "Initial migration"
 flask db upgrade
 
 ```
+
