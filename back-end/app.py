@@ -2,16 +2,52 @@ from flask import Flask, request, jsonify
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 from flask_cors import CORS
+
 from recommend_lesson import recommend_lesson
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from config import Config
+from extensions import db, migrate
+from models import User
+import json
+from sentence_transformers import SentenceTransformer, util
+
 
 app = Flask(__name__)
 CORS(app)
+
+app.config.from_object(Config)
+
+db.init_app(app)
+migrate.init_app(app, db)
 
 MODEL_PATH = "../finetuned-gpt2"
 tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
 model = AutoModelForCausalLM.from_pretrained(MODEL_PATH)
 
 tokenizer.pad_token = tokenizer.eos_token
+
+# Load embedding model
+embedder = SentenceTransformer('all-MiniLM-L6-v2')
+
+with open("dataset.json") as f:
+    knowledge_base = json.load(f)
+
+instruction_texts = [item["instruction"] for item in knowledge_base]
+instruction_embeddings = embedder.encode(instruction_texts, convert_to_tensor=True)
+
+
+@app.route('/')
+def index():
+    return "Flask + MySQL + SQLAlchemy + Migrate is working!"
+
+@app.route('/users', methods=['POST'])
+def create_user():
+    data = request.get_json()
+    user = User(name=data['name'])
+    db.session.add(user)
+    db.session.commit()
+    return jsonify({"id": user.id, "name": user.name}), 201
 
 @app.route("/generate", methods=["POST"])
 def generate():
@@ -38,6 +74,24 @@ def generate():
     return jsonify({
         "instruction": instruction,
         "generated": generated
+    })
+    
+@app.route("/ask", methods=["POST"])
+def ask():
+    data = request.get_json()
+    instruction = data.get("instruction", "").strip()
+    if not instruction:
+        return jsonify({"error": "Missing instruction"}), 400
+
+    query_embedding = embedder.encode(instruction, convert_to_tensor=True)
+    scores = util.cos_sim(query_embedding, instruction_embeddings)[0]
+    top_idx = scores.argmax().item()
+    match = knowledge_base[top_idx]
+
+    return jsonify({
+        "instruction": instruction,
+        "matched_instruction": match["instruction"],
+        "generated": match["output"]
     })
 
 @app.route("/recommend", methods=["GET"])

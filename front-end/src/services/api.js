@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/generate';
+const API_URL = 'http://localhost:5000/ask';
 
 export const generateAnswer = async (instruction) => {
   try {
