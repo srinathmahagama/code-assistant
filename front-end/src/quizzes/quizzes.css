@@ -1,0 +1,41 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.quiz-page {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.quiz-left,
+.quiz-right {
+  flex: 1;
+}
+
+.question-card,
+.empty-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.choice-button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  text-align: left;
+  cursor: pointer;
+  color: black;
+}
+
+.choice-button:hover {
+  background: #e0e0e0;
+}
