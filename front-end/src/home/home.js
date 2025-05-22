@@ -1,76 +1,50 @@
 import React from "react";
-import "../App.css";
-import CodeHelper from "../components/codeHelper";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import CodingChatBot from "../components/chatbot/coding_chatbot";
+import "./home_styles.css";
 
 const Home = () => {
-  const navigate = useNavigate();
-
-  const handleNavigate = (path) => {
-    navigate(path);
-  };
-
   return (
-    <div className="app-layout">
-      <header className="main-header">
-        <h1>Code Learning Platform</h1>
-        <nav className="main-menu">
-          <a href="#lessons">Lessons</a>
-          <a href="#quizzes">Quizzes</a>
-          <a href="#instructions">Code Generator</a>
-        </nav>
-      </header>
-
-      <div className="main-content">
-        {/* Left Column */}
-        <div className="left-panel">
-          <section className="section-card enhanced-card" id="lessons">
-            <h2>📘 Lessons</h2>
-            <ul className="lesson-list">
-              <li>
-                <strong>Lesson 1:</strong> Variables and Data Types
-              </li>
-              <li>
-                <strong>Lesson 2:</strong> Conditional Statements
-              </li>
-              <li>
-                <strong>Lesson 3:</strong> Loops
-              </li>
-              <li>
-                <strong>Lesson 4:</strong> Functions
-              </li>
-              <li>
-                <strong>Lesson 5:</strong> Lists and Dictionaries
-              </li>
-            </ul>
-            <p>
-              Master Python from the ground up. Each lesson includes examples
-              and exercises.
-            </p>
-          </section>
-
-          <div onClick={() => handleNavigate("/quizzes")}>
-            <section className="section-card enhanced-card" id="quizzes">
-              <h2>🧠 Quizzes</h2>
-              <ul className="quiz-list">
-                <li>💡 Quiz 1: Python Basics</li>
-                <li>💡 Quiz 2: Control Flow</li>
-                <li>💡 Quiz 3: Functions & Loops</li>
-              </ul>
-              <p>
-                Assess your understanding with short quizzes after lessons.
-                Instant feedback included!
-              </p>
-            </section>
+    <div className="home-page">
+      {/* Hero Banner */}
+      <section className="hero-section">
+        <div className="hero-text">
+          <h1>Learn to Code Smarter, Not Harder</h1>
+          <p>Master Python and JavaScript with interactive lessons, quick quizzes, and AI assistance.</p>
+          <div className="hero-buttons">
+            <Link to="/lessons" className="cta-btn secondary">📘 Start Learning</Link>
+            <Link to="/quizzes" className="cta-btn secondary">🧠 Take a Quiz</Link>
           </div>
         </div>
-        {/* Right Column */}
-        <div className="right-panel">
-          <section className="section-card" id="instructions">
-            <CodeHelper />
-          </section>
+      </section>
+
+      {/* Features Section */}
+      <section className="features">
+        <div className="feature-card">
+          <h3>📚 Step-by-Step Lessons</h3>
+          <p>Interactive modules with real code examples to guide you through the basics to advanced topics.</p>
         </div>
-      </div>
+        <div className="feature-card">
+          <h3>🧪 Smart Quizzes</h3>
+          <p>Challenge yourself with short quizzes and get instant feedback to reinforce your learning.</p>
+        </div>
+        <div className="feature-card">
+          <h3>🤖 AI Coding Assistant</h3>
+          <p>Stuck on a concept? Ask our built-in AI assistant for help — like having a tutor available 24/7.</p>
+        </div>
+      </section>
+
+      {/* Testimonial / Call to Action */}
+      <section className="testimonial-cta">
+        <blockquote>
+          “This platform made coding fun and easy! I went from beginner to building projects in weeks.”
+          <span>– A Happy Learner</span>
+        </blockquote>
+        <Link to="/lessons" className="cta-btn primary large">🚀 Get Started Now</Link>
+      </section>
+
+      {/* Floating Chatbot */}
+      <CodingChatBot />
     </div>
   );
 };

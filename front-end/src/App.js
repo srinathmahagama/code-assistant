@@ -1,16 +1,16 @@
 import { Routes, Route } from "react-router-dom";
-import QuizzesPage from "./quizzes/quizzes";
-import PythonQuizzes from "./quizzes/pythonQuizzes";
-import JavaScriptQuizzes from "./quizzes/javaScriptQuizzes";
+import QuizzesFlow from "./components/quizzes";
 import Home from "./home/home";
+import AppLayout from "./core/app_layout";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/quizzes" element={<QuizzesPage />} />
-      <Route path="/python-quizzes" element={<PythonQuizzes />} />
-      <Route path="/javascript-quizzes" element={<JavaScriptQuizzes />} />
+      <Route element={<AppLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/quizzes" element={<QuizzesFlow />} />
+        <Route path="*" element={<div>404 - Page Not Found</div>} />
+      </Route>
     </Routes>
   );
 }

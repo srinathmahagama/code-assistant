@@ -1,0 +1,29 @@
+.main-header {
+    background-color: #0d0696;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .brand-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .main-menu a {
+    color: white;
+    margin-left: 1.5rem;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .main-menu a:hover {
+    text-decoration: underline;
+  }
+  
+  .page-content {
+    padding: 2px;
+  }
+  

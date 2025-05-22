@@ -9,10 +9,12 @@ class Quizz(db.Model):
     __tablename__ = 'quizzes'
     id = db.Column(db.Integer, primary_key=True)
     question_text = db.Column(db.Text, nullable=False)
+    answer_options = db.Column(db.JSON, nullable=False)
     correct_answer = db.Column(db.Text, nullable=False)
     language = db.Column(db.String(50), nullable=False)
     question_type = db.Column(db.String(50), nullable=False)
     difficulty = db.Column(db.String(50), nullable=False)
+
 
 class QuizLevel(db.Model):
     __tablename__ = 'quiz_levels'
@@ -21,4 +23,4 @@ class QuizLevel(db.Model):
     title = db.Column(db.String(100), nullable=False)
     topic = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text, nullable=False)
-    quiz_type = db.Column(db.String(50), nullable=False)
+

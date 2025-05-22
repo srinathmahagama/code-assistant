@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const API_URL = "http://localhost:5000/ask";
-const QUIZZ_URL = "http://localhost:5001/quizzes";
-const QUIZ_LEVELS_API_URL = "http://localhost:5001/quiz_levels";
+const GET_QUIZZ_URL = "http://localhost:5000/quizzes";
+const QUIZ_LEVELS_API_URL = "http://localhost:5000/quiz_levels";
 
 export const generateAnswer = async (instruction) => {
   try {
@@ -14,9 +14,10 @@ export const generateAnswer = async (instruction) => {
   }
 };
 
-export const fetchQuizzesFromAPI = async () => {
+export const fetchQuizzesFromAPI = async (language, difficulty) => {
   try {
-    const response = await axios.get(QUIZZ_URL);
+    const url = GET_QUIZZ_URL+`?language=${language.toUpperCase()}&difficulty=${difficulty.toUpperCase()}`;
+    const response = await axios.get(url);
     return response.data;
   } catch (error) {
     console.error("Error fetching quizzes:", error);
