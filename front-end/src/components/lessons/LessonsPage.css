@@ -1,0 +1,135 @@
+.lessons-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .lessons-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .lessons-header h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+  
+  .lessons-header p {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+  }
+  
+  .back-button {
+    background: none;
+    border: none;
+    color: #3498db;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .back-button:hover {
+    color: #2980b9;
+  }
+  
+  .lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  .lesson-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .lesson-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .lesson-image-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .lesson-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .lesson-card:hover .lesson-image {
+    transform: scale(1.05);
+  }
+  
+  .difficulty-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .difficulty-badge.beginner {
+    background-color: #2ecc71;
+  }
+  
+  .difficulty-badge.intermediate {
+    background-color: #3498db;
+  }
+  
+  .difficulty-badge.advanced {
+    background-color: #e74c3c;
+  }
+  
+  .lesson-content {
+    padding: 1.5rem;
+  }
+  
+  .lesson-content h3 {
+    margin: 0 0 0.8rem 0;
+    color: #2c3e50;
+    font-size: 1.3rem;
+  }
+  
+  .lesson-description {
+    color: #7f8c8d;
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+  }
+  
+  .lesson-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .topic-tag {
+    background-color: #ecf0f1;
+    color: #34495e;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+  }
+  
+  @media (max-width: 768px) {
+    .lessons-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .lessons-header h1 {
+      font-size: 2rem;
+    }
+  }
