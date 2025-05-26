@@ -2,8 +2,6 @@ from flask import Flask, request, jsonify
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 from flask_cors import CORS
-
-from recommend_lesson import recommend_lesson
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from config import Config
@@ -11,7 +9,9 @@ from extensions import db, migrate
 from models import User, Quizz, QuizLevel
 import json
 from sentence_transformers import SentenceTransformer, util
+from recommend_lesson import LessonRecommender
 
+lesson_recommender = LessonRecommender()
 
 app = Flask(__name__)
 CORS(app)
@@ -108,25 +108,27 @@ def get_quizzes():
     ]
     return jsonify(result)
 
-@app.route("/recommend", methods=["GET"])
-def recommend():
-    user_input = request.args.get("input", "").strip()
+@app.route("/recommend_lessons", methods=["POST"])
+def recommend_lessons():
+    data = request.get_json()
+    user_input = data.get("user_input", "").strip()
     
     if not user_input:
+        return jsonify({"error": "Missing user input"}), 400
+    
+    try:
+        # Get recommendations based on combined questions
+        recommended_lessons = lesson_recommender.recommend_lessons(user_input)
+        
         return jsonify({
-            "error": "Empty input",
-            "message": "Please provide a question about programming"
-        }), 400
-
-    result = recommend_lesson(user_input)
-    return jsonify({
-        "level": result["level"],
-        "label": result["label"],
-        "lessons": result["recommended_lessons"]
-    })
-
-if __name__ == "__main__":
-    app.run(debug=True)
+            "user_input": user_input,
+            "recommended_lessons": recommended_lessons
+        })
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 #if __name__ == "__main__":
-#    app.run(host="0.0.0.0", port=5002, debug=True)
+ #   app.run(debug=True)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5007, debug=True)

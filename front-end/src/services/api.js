@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/ask";
-const GET_QUIZZ_URL = "http://localhost:5000/quizzes";
-const QUIZ_LEVELS_API_URL = "http://localhost:5000/quiz_levels";
+const API_URL = "http://localhost:5007/ask";
+const GET_QUIZZ_URL = "http://localhost:5007/quizzes";
+const QUIZ_LEVELS_API_URL = "http://localhost:5007/quiz_levels";
 
 export const generateAnswer = async (instruction) => {
   try {
@@ -31,6 +31,19 @@ export const fetchQuizLevels = async () => {
     return response.data;
   } catch (error) {
     console.error("Error fetching quiz levels:", error);
+    return [];
+  }
+};
+
+export const recommendLessons = async (userInput) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:5007/recommend_lessons", 
+      { user_input: userInput }
+    );
+    return response.data.recommended_lessons || [];
+  } catch (error) {
+    console.error("Error getting recommendations:", error);
     return [];
   }
 };

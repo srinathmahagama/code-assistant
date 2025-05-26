@@ -5,7 +5,7 @@ import './coding_chatbot_styles.css'; // External styles
 
 export const codeHelperEvents = new EventEmitter();
 
-function CodingChatBot() {
+function CodingChatBot({ onRecommend }) {
   const [open, setOpen] = useState(false);
   const [instruction, setInstruction] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
@@ -31,6 +31,12 @@ function CodingChatBot() {
       const answer = await generateAnswer(userMessage.text);
       const botMessage = { type: 'bot', text: answer };
       setChatHistory((prev) => [...prev, botMessage]);
+
+      // Send the question to parent component for recommendations
+      if (onRecommend) {
+        onRecommend(userMessage.text);
+      }
+
     } catch (err) {
       setError('⚠️ Failed to get response.');
       console.error(err);

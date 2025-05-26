@@ -119,3 +119,52 @@
   color: #6b7280;
   font-weight: 500;
 }
+
+/* Recommended Lessons Section */
+.recommended-lessons-section {
+  padding: 2rem;
+  background: #f8f9fa;
+  margin: 2rem 0;
+  border-radius: 8px;
+}
+
+.recommended-lessons-section h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+.lessons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.lesson-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.lesson-card:hover {
+  transform: translateY(-5px);
+}
+
+.lesson-card h3 {
+  color: #3498db;
+  margin-bottom: 0.5rem;
+}
+
+.lesson-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.lesson-link:hover {
+  text-decoration: underline;
+}

@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import CodingChatBot from "../components/chatbot/coding_chatbot";
 import "./home_styles.css";
+import { recommendLessons } from "../services/api";
 
 const Home = () => {
+  const [recommendedLessons, setRecommendedLessons] = useState([]);
+  const [userQuestions, setUserQuestions] = useState([]);
+
+  const handleGetRecommendations = async (newQuestion) => {
+    const updatedQuestions = [...userQuestions, newQuestion];
+    setUserQuestions(updatedQuestions);
+
+    // Wait for at least 3 questions
+    if (updatedQuestions.length >= 3) {
+      try {
+        // Combine the last 3 questions for context
+        const context = updatedQuestions.slice(-3).join(" ");
+        const lessons = await recommendLessons(context);
+        setRecommendedLessons(lessons);
+      } catch (error) {
+        console.error("Error getting recommendations:", error);
+      }
+    }
+  };
+
   return (
     <div className="home-page">
       {/* Hero Banner */}
@@ -17,6 +38,29 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Recommended Lessons Section */}
+      {recommendedLessons.length > 0 && (
+        <section className="recommended-lessons-section">
+          <h2>Recommended Lessons Based on Your Questions</h2>
+          <div className="lessons-grid">
+            {recommendedLessons.map((lesson, index) => (
+              <div key={index} className="lesson-card">
+                <h3>{lesson.title}</h3>
+                <p>{lesson.description}</p>
+                <Link 
+                  to={`/lessons?topic=${encodeURIComponent(lesson.title)}`}
+                  className="lesson-link"
+                >
+                  Start Learning →
+                </Link>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+
 
       {/* Features Section */}
       <section className="features">
@@ -44,7 +88,7 @@ const Home = () => {
       </section>
 
       {/* Floating Chatbot */}
-      <CodingChatBot />
+      <CodingChatBot onRecommend={handleGetRecommendations} />
     </div>
   );
 };
